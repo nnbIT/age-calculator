@@ -3,17 +3,57 @@
 
 from datetime import date, datetime
 
-def validate_date_input(day, month, year):
-    """Validate that the entered date is real and not in the future."""
+#validate date in parts
+def get_valid_day():
+    while True:
+        try:
+            day = int(input("Day (1–31): "))
+            if 1 <= day <= 31:
+                return day
+            else:
+                print("❌ Day must be between 1 and 31.")
+        except ValueError:
+            print("❌ Please enter a valid number.")
+
+
+def get_valid_month():
+    while True:
+        try:
+            month = int(input("Month (1–12): "))
+            if 1 <= month <= 12:
+                return month
+            else:
+                print("❌ Month must be between 1 and 12.")
+        except ValueError:
+            print("❌ Please enter a valid number.")
+
+
+def get_valid_year():
+    while True:
+        try:
+            year = int(input("Year (e.g., 2000): "))
+            if year > 0:
+                return year
+            else:
+                print("❌ Year must be positive.")
+        except ValueError:
+            print("❌ Please enter a valid number.")
+def validate_full_date(day, month, year):
+    from datetime import date
+
     try:
         birth_date = date(year, month, day)
+
         if birth_date > date.today():
             print("❌ The birth date cannot be in the future.")
             return None
+
         return birth_date
+
     except ValueError:
-        print("❌ Invalid date. Please enter a valid day, month, and year.")
+        print("❌ The date does not exist. Please enter it again.\n")
         return None
+
 
 def calculate_age(birth_date):
     """Calculate age in years, months, and days."""
@@ -36,23 +76,30 @@ def calculate_age(birth_date):
     return years, months, days
 
 def main():
-    print("╔═══════════════════════════════════════════════╗")
-    print("║           PYTHON AGE CALCULATOR               ║")
-    print("╚═══════════════════════════════════════════════╝\n")
+    print(
+    "Welcome to the Python Age Calculator! 👋\n"
+    "This program lets you calculate your exact age in:\n"
+    "   • Years\n"
+    "   • Months\n"
+    "   • Days\n"
+    "\nJust enter your birth date and the calculator will do the rest.\n")
+
+    print("With this program you can:")
+    print(" - Enter your birth date easily")
+    print(" - Automatically validate the date")
+    print(" - Get your exact age with precision")
+    print(" - Repeat the calculation as many times as you want\n")
 
     while True:
         print("Please enter your birth date:")
-        try:
-            day = int(input("Day (1-31): "))
-            month = int(input("Month (1-12): "))
-            year = int(input("Year (e.g., 2000): "))
-        except ValueError:
-            print("❌ Please enter only valid numbers.\n")
-            continue
 
-        birth_date = validate_date_input(day, month, year)
-        if not birth_date:
-            continue
+        day = get_valid_day()
+        month = get_valid_month()
+        year = get_valid_year()
+
+        birth_date = validate_full_date(day, month, year)
+        if birth_date:
+            break
 
         years, months, days = calculate_age(birth_date)
         print(f"\n✅ You are {years} years, {months} months, and {days} days old.\n")
