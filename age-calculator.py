@@ -77,12 +77,13 @@ def calculate_age(birth_date):
 
 def main():
     print(
-    "Welcome to the Python Age Calculator! 👋\n"
-    "This program lets you calculate your exact age in:\n"
-    "   • Years\n"
-    "   • Months\n"
-    "   • Days\n"
-    "\nJust enter your birth date and the calculator will do the rest.\n")
+        "Welcome to the Python Age Calculator! 👋\n"
+        "This program lets you calculate your exact age in:\n"
+        "   • Years\n"
+        "   • Months\n"
+        "   • Days\n"
+        "\nJust enter your birth date and the calculator will do the rest.\n"
+    )
 
     print("With this program you can:")
     print(" - Enter your birth date easily")
@@ -98,9 +99,10 @@ def main():
         year = get_valid_year()
 
         birth_date = validate_full_date(day, month, year)
-        if birth_date:
-            break
+        if not birth_date:
+            continue   # Ask again
 
+        # ✅ Now it's valid → calculate age
         years, months, days = calculate_age(birth_date)
         print(f"\n✅ You are {years} years, {months} months, and {days} days old.\n")
 
@@ -108,6 +110,7 @@ def main():
         if again != "y":
             print("\n👋 Thanks for using the Age Calculator. Goodbye!")
             break
+
 
 if __name__ == "__main__":
     main()
