@@ -18,8 +18,8 @@ Maintain clean, readable logic and friendly command-line interaction.
 🧠 LOGICAL FLOW (Commented Version)
 
 # START
-# │
-# ▼
+#  │
+#  ▼
 # Display introduction and explanation of the program
 # │
 # ▼
