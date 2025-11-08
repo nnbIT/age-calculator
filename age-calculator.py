@@ -55,6 +55,43 @@ def validate_full_date(day, month, year):
         return None
 
 
+def verificacion_manual(day, month, year):
+    """Allow the user to modify day, month or year before final calculation."""
+
+    while True:
+        edit = input("Do you want to modify any value? (y/n): ").lower()
+
+        if edit == "n":
+            return day, month, year
+
+        elif edit == "y":
+            opcion = input("What do you want to modify? (day/month/year): ").lower()
+
+            if opcion == "day":
+                day = get_valid_day()
+
+            elif opcion == "month":
+                month = get_valid_month()
+
+            elif opcion == "year":
+                year = get_valid_year()
+
+            else:
+                print("❌ Invalid option. Choose: day, month, or year.")
+                continue
+
+            birth_date = validate_full_date(day, month, year)
+
+            if birth_date:
+                print("✅ Updated date is valid.\n")
+                return day, month, year
+            else:
+                print("❌ The updated date is not valid. Please try again.\n")
+
+        else:
+            print("❌ Please answer 'y' or 'n'.")
+
+
 def calculate_age(birth_date):
     """Calculate age in years, months, and days."""
     today = date.today()
@@ -102,7 +139,12 @@ def main():
         if not birth_date:
             continue   # Ask again
 
+        day, month, year = verificacion_manual(day, month, year)
+
         # ✅ Now it's valid → calculate age
+        birth_date = validate_full_date(day, month, year)
+        if not birth_date:
+            continue
         years, months, days = calculate_age(birth_date)
         print(f"\n✅ You are {years} years, {months} months, and {days} days old.\n")
 
