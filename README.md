@@ -17,34 +17,34 @@ Maintain clean, readable logic and friendly command-line interaction.
 
 🧠 LOGICAL FLOW (Commented Version)
 
-START
- │
- ▼
-Display introduction and explanation of the program
- │
- ▼
-Ask the user to enter:
- • Day (1–31)
- • Month (1–12)
- • Year (> 0)
- │
- ▼
-Validate the full date (must exist and cannot be in the future)
- │
- ▼
-Ask the user if they want to modify day, month, or year
- ├──► If yes, revalidate the updated date
- └──► If no, continue
- │
- ▼
-Calculate the age in years, months, and days
- │
- ▼
-Display the result
- │
- ▼
-Ask if the user wants to calculate another age
- └──► If no, exit the program
+# START
+# │
+# ▼
+# Display introduction and explanation of the program
+# │
+# ▼
+# Ask the user to enter:
+# • Day (1–31)
+# • Month (1–12)
+# • Year (> 0)
+# │
+# ▼
+# Validate the full date (must exist and cannot be in the future)
+# │
+# ▼
+# Ask the user if they want to modify day, month, or year
+# ├──► If yes, revalidate the updated date
+# └──► If no, continue
+# │
+# ▼
+# Calculate the age in years, months, and days
+# │
+# ▼
+# Display the result
+# │
+# ▼
+# Ask if the user wants to calculate another age
+# └──► If no, exit the program
 
 📅 DATE RULES USED BY THE PROGRAM
 
